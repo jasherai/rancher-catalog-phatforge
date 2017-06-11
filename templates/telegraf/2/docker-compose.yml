@@ -1,6 +1,8 @@
 telegraf:
   external_links:
   - ${influxdb_link}:influxdb
+  volumes_from:
+    - telegraf-config
   labels:
     io.rancher.sidekicks: telegraf-config
     io.rancher.container.pull_image: always
@@ -12,4 +14,14 @@ telegraf:
   volumes_from:
   - telegraf-config
 telegraf-config:
-  image: objectpartners/rancher-telegraf-config:latest
+  network_mode: "none"
+  image: rawmind/alpine-volume:0.0.2-1
+  labels:
+    io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+    io.rancher.container.hostname_override: container_name
+    io.rancher.sidekicks: telegraf-config
+  environment:
+    - SERVICE_VOLUME=/config
+  volumes:
+    - /config     
+  volume_driver: local
