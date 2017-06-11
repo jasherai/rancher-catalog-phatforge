@@ -1,5 +1,5 @@
 name: Telegraf
 description: |
   Telegraf is a plugin-driven server agent for collecting and reporting metrics.
-version: 1.3.1
+version: 1.3.1-rc1
 category: Metrics
