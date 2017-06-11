@@ -1,6 +1,6 @@
 .catalog:
   name: Telegraf
-  version: 0.13
+  version: 1.1.2
   description: |
     Telegraf is a plugin-driven server agent for collecting and reporting metrics.
   questions:
